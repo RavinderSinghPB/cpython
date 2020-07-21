@@ -23,10 +23,14 @@ def bisect_right(a, x, lo=0, hi=None):
     slice of a to be searched.
     """
 
-    if lo < 0:
-        raise ValueError('lo must be non-negative')
+    if lo < 0 or lo>len(a):
+        raise ValueError('lo must be non-negative,and less then len(a:list)'')
     if hi is None:
         hi = len(a)
+    if hi<0 or hi>len(a):
+        raise ValueError('hi must be non-negative, and less then len(a:list)')
+    if lo>hi:
+		raise ValueError('lo must be less then hi') 
     while lo < hi:
         mid = (lo+hi)//2
         if x < a[mid]: hi = mid
@@ -56,11 +60,16 @@ def bisect_left(a, x, lo=0, hi=None):
     Optional args lo (default 0) and hi (default len(a)) bound the
     slice of a to be searched.
     """
-
-    if lo < 0:
-        raise ValueError('lo must be non-negative')
+						 				 
+	if lo < 0 or lo>len(a):
+        raise ValueError('lo must be non-negative,and less then len(a:list)'')
     if hi is None:
         hi = len(a)
+	if hi<0 or hi>len(a):
+        raise ValueError('hi must be non-negative, and less then len(a:list)')
+    if lo>hi:
+		raise ValueError('lo must be less then hi') 					 
+	
     while lo < hi:
         mid = (lo+hi)//2
         if a[mid] < x: lo = mid+1
